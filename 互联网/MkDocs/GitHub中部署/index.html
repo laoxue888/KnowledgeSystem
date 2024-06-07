@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../GitHub%E4%B8%AD%E9%83%A8%E7%BD%B2/">
+        <link rel="prev" href="../../..">
       
       
-        <link rel="next" href="../%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">
+        <link rel="next" href="../mkdocs%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Mkdocs部署到服务器 - Knowledge System</title>
+        <title>前言 - Knowledge System</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nps" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mkdocs部署到服务器
+              前言
             
           </span>
         </div>
@@ -282,27 +282,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../GitHub%E4%B8%AD%E9%83%A8%E7%BD%B2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    前言
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -312,19 +291,32 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
   
   <span class="md-ellipsis">
-    Mkdocs部署到服务器
+    前言
   </span>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      </a>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -333,33 +325,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#nps" class="md-nav__link">
-    <span class="md-ellipsis">
-      服务器安装和配置nps
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -481,23 +446,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#nps" class="md-nav__link">
-    <span class="md-ellipsis">
-      服务器安装和配置nps
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -512,32 +462,14 @@
                   
 
 
-  <h1>Mkdocs部署到服务器</h1>
-
-<p>mkdocs部署到服务器</p>
-<p>👀参考</p>
-<ul>
-<li><a href="https://blog.csdn.net/qq_42014026/article/details/123444046">服务器外网多人访问，ubuntu20.04，ssh，nps内网穿透</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/551345157">用mkdocs+nginx搭建个人网站</a></li>
-</ul>
-<h2 id="nps">服务器安装和配置nps</h2>
-<p>🧐安装</p>
-<pre><code class="language-shell">wget https://github.com/ehang-io/nps/releases/download/v0.26.10/linux_amd64_server.tar.gz
+<h1 id="_1">前言</h1>
+<h1 id="_2">操作</h1>
+<pre><code class="language-shell">mkdocs build
+mkdocs gh-deploy
 </code></pre>
-<pre><code class="language-shell">tar -zxvf linux_amd64_server.tar.gz
-</code></pre>
-<pre><code class="language-shell">./nps install
-</code></pre>
-<pre><code class="language-shell">nps start
-</code></pre>
-<p>🧐配置</p>
-<pre><code class="language-shell">cd /etc/nps
-</code></pre>
-<pre><code class="language-shell">vim nps.conf
-</code></pre>
-<pre><code class="language-shell">nps stop
-nps start
-</code></pre>
+<p><img alt="" src="../images/img.png" /></p>
+<h1 id="_3">参考</h1>
+<p><a href="https://blog.csdn.net/qq_41261251/article/details/116021097">so easy！从头教你用mkdocs构建个人博客系统~</a></p>
 
 
 
