@@ -1,0 +1,139 @@
+<mxfile host="Electron" modified="2024-06-07T02:05:16.240Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="2uvfvOjCKzVzuNh8a9VB" version="22.0.2" type="device">
+  <diagram name="第 1 页" id="wMg3ertZ8Xy5a8TGnuAC">
+    <mxGraphModel dx="875" dy="518" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_z--BqzidlDlm2PTRWrN-2" value="&lt;h1&gt;说明&lt;/h1&gt;&lt;p&gt;1. 尽量展示出所有细节，包括从图片输入到最终输出展示&lt;/p&gt;&lt;p&gt;2. 如果太长，可以把对应的类放到一个Python文件中，单独对其进行分析。流程图中标记该文件名称&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="514" y="119" width="389" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-5" target="_z--BqzidlDlm2PTRWrN-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="batch" tooltip="数据类型：字典&#xa;&#xa;&#39;inp&#39;: ndarray:(1， 3, 352, 512)&#xa;&#39;meta&#39;: {&#39;ann&#39;: &#39;&#39;, &#39;center&#39;: [250 166], &#39;scale&#39;: [500 333], &#39;test&#39;: &#39;&#39;}&#xa;&#xa;output = network(batch[&#39;inp&#39;], batch)" id="_z--BqzidlDlm2PTRWrN-5">
+          <mxCell style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="1">
+            <mxGeometry x="290" y="340" width="100" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-6" target="_z--BqzidlDlm2PTRWrN-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="output, cnn_feature = self.dla(x)" tooltip="1. output: dict&#xa;&#39;ct_hm&#39;: (1, 20, 88, 128)&#xa;&#39;wh&#39;: (1, 2, 88, 128)&#xa;&#xa;2. cnn_feature: (1, 64, 88, 128)" id="_z--BqzidlDlm2PTRWrN-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+            <mxGeometry x="220" y="441" width="240" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-8" target="_z--BqzidlDlm2PTRWrN-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="ct, detection = self.decode_detection(output, cnn_feature.size(2), cnn_feature.size(3))" tooltip="1. ct: (1, 100, 2)&#xa;&#xa;2. detection: (1, 100, 6)" id="_z--BqzidlDlm2PTRWrN-8">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+            <mxGeometry x="187.5" y="539" width="305" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="output = self.gcn(output, cnn_feature, batch)" tooltip="output: dict&#xa;&#xa;&#39;ct_hm&#39;: (1, 20, 88, 128)&#xa;&#39;wh&#39;: (1, 2, 88, 128)&#xa;&#39;ct&#39;: (1, 100, 2)&#xa;&#39;detection&#39;: (1, 6)&#xa;&#39;it_ex&#39;: (1, 40, 2)&#xa;&#39;ex&#39;: (1, 4, 2)&#xa;&#39;it_py&#39;: (1, 128, 2)&#xa;&#39;py&#39;: 列表，3个元素list(3): (1， 128， 2)" id="_z--BqzidlDlm2PTRWrN-10">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+            <mxGeometry x="205" y="638" width="270" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="output" tooltip="output: dict&#xa;&#xa;&#39;ct_hm&#39;: (1, 20, 88, 128)&#xa;&#39;wh&#39;: (1, 2, 88, 128)&#xa;&#39;ct&#39;: (1, 100, 2)&#xa;&#39;detection&#39;: (1, 6)&#xa;&#39;it_ex&#39;: (1, 40, 2)&#xa;&#39;ex&#39;: (1, 4, 2)&#xa;&#39;it_py&#39;: (1, 128, 2)&#xa;&#39;py&#39;: 列表，3个元素list(3): (1， 128， 2)" id="_z--BqzidlDlm2PTRWrN-12">
+          <mxCell style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="1">
+            <mxGeometry x="290" y="748" width="100" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-10" target="_z--BqzidlDlm2PTRWrN-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-17" value="a_0" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="540" y="443" width="50" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-6" target="_z--BqzidlDlm2PTRWrN-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-19" value="a_1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="540" y="541" width="50" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-20" value="a_2" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="540" y="640" width="50" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-8" target="_z--BqzidlDlm2PTRWrN-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-10" target="_z--BqzidlDlm2PTRWrN-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="a_0" tooltip="output, cnn_feature = self.dla(x)" id="_z--BqzidlDlm2PTRWrN-23">
+          <mxCell style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+            <mxGeometry x="814" y="451" width="50" height="56" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-24" target="_z--BqzidlDlm2PTRWrN-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="x" tooltip="x :(1， 3, 352, 512)" id="_z--BqzidlDlm2PTRWrN-24">
+          <mxCell style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="1">
+            <mxGeometry x="922" y="449" width="100" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-23" target="_z--BqzidlDlm2PTRWrN-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-26" target="_z--BqzidlDlm2PTRWrN-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="x = self.base(x)" tooltip="in :(1， 3, 352, 512)&#xa;out: 包含6个元素的列表，每个元素的大小为：&#xa;list(0): (1, 16, 352, 512)&#xa;list(1): (1, 32, 176, 256)&#xa;list(2): (1, 64, 88, 128)&#xa;list(3): (1, 128, 44, 64)&#xa;list(4): (1, 256, 22, 32)&#xa;list(5): (1, 512, 11, 16)" id="_z--BqzidlDlm2PTRWrN-26">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+            <mxGeometry x="912" y="548" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-28" target="_z--BqzidlDlm2PTRWrN-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="x = self.dla_up(x)" tooltip="in: 包含6个元素的列表，每个元素的大小为：&#xa;list(0): (1, 16, 352, 512)&#xa;list(1): (1, 32, 176, 256)&#xa;list(2): (1, 64, 88, 128)&#xa;list(3): (1, 128, 44, 64)&#xa;list(4): (1, 256, 22, 32)&#xa;list(5): (1, 512, 11, 16)&#xa;&#xa;out: 包含4个元素的列表，每个元素的大小为：&#xa;list(0): (1, 64, 88, 128)&#xa;list(1): (1, 128, 44, 64)&#xa;list(2): (1, 256, 22, 32)&#xa;list(3): (1, 512, 11, 16)" id="_z--BqzidlDlm2PTRWrN-28">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+            <mxGeometry x="912" y="658" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-30" target="_z--BqzidlDlm2PTRWrN-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-30" value="&lt;div&gt;y = []&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; for i in range(self.last_level - self.first_level):&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; y.append(x[i].clone())&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="809.5" y="766" width="325" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-32" target="_z--BqzidlDlm2PTRWrN-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-32" value="self.ida_up(y, 0, len(y))" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="873" y="873" width="198" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-34" value="&lt;div&gt;z = {}&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; for head in self.heads:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; z[head] = self.__getattr__(head)(y[-1])&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="804.5" y="986" width="335" height="60" as="geometry" />
+        </mxCell>
+        <UserObject label="return z, y[-1]" tooltip="x :(1， 3, 352, 512)" id="_z--BqzidlDlm2PTRWrN-36">
+          <mxCell style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="1">
+            <mxGeometry x="922" y="1087" width="100" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-34" target="_z--BqzidlDlm2PTRWrN-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="a_2" tooltip="output = self.gcn(output, cnn_feature, batch)" id="_z--BqzidlDlm2PTRWrN-39">
+          <mxCell style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+            <mxGeometry x="1640" y="518" width="50" height="56" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="output, cnn_feature, batch" tooltip="" id="_z--BqzidlDlm2PTRWrN-40">
+          <mxCell style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="1">
+            <mxGeometry x="1748" y="516" width="100" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_z--BqzidlDlm2PTRWrN-39" target="_z--BqzidlDlm2PTRWrN-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_z--BqzidlDlm2PTRWrN-43" value="&lt;h1&gt;学习目标&lt;/h1&gt;&lt;p&gt;1. 迭代方式&lt;/p&gt;&lt;p&gt;2. 图卷积运算方式&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="948" y="115" width="389" height="106" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
