@@ -7827,8 +7827,13 @@
 <li><a href="#_2">操作</a><ul>
 <li><a href="#_3">第一步：手动对刀</a></li>
 <li><a href="#_4">第二步：制作刀路</a></li>
+<li><a href="#_5">第三步：导入刀路</a></li>
+<li><a href="#xy">手动执行移动刀头到合适位置并对xy方向置零</a></li>
+<li><a href="#_6">执行程序</a></li>
 </ul>
 </li>
+<li><a href="#_7">效果</a></li>
+<li><a href="#_8">操作改进</a></li>
 </ul>
 </div>
 <h1 id="_1">前言</h1>
@@ -7838,11 +7843,16 @@
 <p><img alt="" src="../images/fc368462.png" /></p>
 <h2 id="_3">第一步：手动对刀</h2>
 <p>对刀就是设定程序（加工文件）中的原点在机器实际坐标当中的位置。比如要在一块木料的中心刻字，程序中的原点是设定在文字 左5mm 下5mm 的地方。那么我木料可以随意摆放，然后将刀头<strong>移动到木料中心的 左5mm 下5mm 处，然后在此处把坐标清零</strong>，就完成了对刀，这样刻出来就会和要求的情况吻合。</p>
+<p>（1）固定工件</p>
+<p><img alt="" src="../images/d9e67cbf.png" /></p>
+<blockquote>
+<p>tip: 如上图所示，捉住螺栓，然后拧蝶形螺母比较方便</p>
+</blockquote>
 <p><strong>❇️上下自动对刀</strong></p>
-<p>（1）连接对刀仪</p>
+<p>（2）连接对刀仪</p>
 <p><img alt="" src="../images/814ba636.png" /></p>
 <p><img alt="" src="../images/d754d0a9.png" /></p>
-<p>（2）确定刀头与加工件表面的距离</p>
+<p>（3）确定刀头与加工件表面的距离</p>
 <p>首先测量对刀传感器的厚度  </p>
 <p><img alt="" src="../images/5795e431.png" /></p>
 <p>然后输入对刀指令</p>
@@ -7853,7 +7863,7 @@
 <pre><code class="language-shell">G91G21G38.2Z-40F100;G92Z1.58;G0Z5;
 </code></pre>
 <p><img alt="" src="../images/52b4564a.png" /></p>
-<p>（3）软件启动自动对刀程序  </p>
+<p>（4）软件启动自动对刀程序  </p>
 <p><img alt="" src="../images/ff44a375.png" /></p>
 <h2 id="_4">第二步：制作刀路</h2>
 <p>可以利用已有矢量或者图片用ARTCAM2018 制作<br />
@@ -7864,7 +7874,19 @@
 3 雕刻浮雕<br />
 <a href="https://www.ixigua.com/7064943982001783328?logTag=902d1bc32710de862114">https://www.ixigua.com/7064943982001783328?logTag=902d1bc32710de862114</a><br />
 4 Vbit 雕刻<br />
-<a href="https://www.ixigua.com/7037276381834641958?logTag=266f518b874b1d0d8838">https://www.ixigua.com/7037276381834641958?logTag=266f518b874b1d0d8838</a>  </p>
+<a href="https://www.ixigua.com/7037276381834641958?logTag=266f518b874b1d0d8838">https://www.ixigua.com/7037276381834641958?logTag=266f518b874b1d0d8838</a></p>
+<p>生成如图所示文件</p>
+<p><img alt="" src="../images/dfadea98.png" /></p>
+<h2 id="_5">第三步：导入刀路</h2>
+<p><img alt="" src="../images/16a1fa3d.png" /></p>
+<h2 id="xy">手动执行移动刀头到合适位置并对xy方向置零</h2>
+<p><img alt="" src="../images/85ff6912.png" /></p>
+<h2 id="_6">执行程序</h2>
+<p><img alt="" src="../images/832ed65b.png" /></p>
+<h1 id="_7">效果</h1>
+<p><img alt="" src="../images/c085c3d0.png" /></p>
+<h1 id="_8">操作改进</h1>
+<p>最好有个刀路仿真软件，模拟执行过程，降低错误率。。。或者先关闭机器，执行程序，看仿真结果过程。</p>
 
 
 
