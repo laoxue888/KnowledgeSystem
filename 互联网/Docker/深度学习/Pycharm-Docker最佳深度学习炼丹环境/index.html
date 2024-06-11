@@ -1040,6 +1040,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/SAFDNet%EF%BC%883D%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SAFDNet（3D）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1048,10 +1069,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1062,8 +1083,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3_1">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
             <span class="md-nav__icon md-icon"></span>
             ISBNet
           </label>
@@ -1112,10 +1133,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1126,8 +1147,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
             <span class="md-nav__icon md-icon"></span>
             MobileNetV4
           </label>
@@ -1176,10 +1197,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1190,8 +1211,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
             <span class="md-nav__icon md-icon"></span>
             YoloV5
           </label>
@@ -7961,7 +7982,12 @@
 </li>
 <li><a href="#_4">测试</a></li>
 <li><a href="#condapython">（进一步）配置conda的python编译器</a></li>
-<li><a href="#_5">总结</a></li>
+<li><a href="#_5">安装显卡驱动</a><ul>
+<li><a href="#cuda-toolkit">CUDA Toolkit安装</a></li>
+<li><a href="#cudnn">cuDNN安装</a></li>
+<li><a href="#conda">conda的安装</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="_1">前言</h1>
@@ -8078,7 +8104,39 @@ CMD [&quot;/bin/bash&quot;]
 <p><img alt="" src="../images/img_33.png" /></p>
 <p><img alt="" src="../images/img_34.png" /></p>
 <p>其他和上述一样。</p>
-<h1 id="_5">总结</h1>
+<h1 id="_5">安装显卡驱动</h1>
+<p>基础的Docker环境是不安装<code>CUDA Toolkit</code>和<code>cuDNN</code>，因此需要自己安装。</p>
+<h2 id="cuda-toolkit"><code>CUDA Toolkit</code>安装</h2>
+<p>🤔参考：
+- <a href="https://zhuanlan.zhihu.com/p/686912520">Ubuntu CUDA toolkit安装</a></p>
+<p>❇️通过<code>nvidia-smi</code>查看主机的显卡驱动版本</p>
+<p>❇️选择与主机显卡相同版本的<code>CUDA Toolkit</code></p>
+<p><a href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA Toolkit Archive</a></p>
+<p><img alt="" src="../Pycharm-Docker%E6%9C%80%E4%BD%B3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%82%BC%E4%B8%B9%E7%8E%AF%E5%A2%83_images/bcbecd24.png" /></p>
+<p>❇️逐步选择，最后会有相应的安装脚本</p>
+<p><img alt="" src="../Pycharm-Docker%E6%9C%80%E4%BD%B3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%82%BC%E4%B8%B9%E7%8E%AF%E5%A2%83_images/179f728e.png" /></p>
+<pre><code class="language-shell">wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-12-5
+</code></pre>
+<p>❇️设置环境变量，并添加到<code>~/.bashrc</code></p>
+<pre><code class="language-shell">export PATH=/usr/local/cuda-12.3/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12/lib64:$LD_LIBRARY_PATH
+</code></pre>
+<p>❇️测试</p>
+<pre><code class="language-shell">nvcc -V
+</code></pre>
+<p><img alt="" src="../Pycharm-Docker%E6%9C%80%E4%BD%B3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%82%BC%E4%B8%B9%E7%8E%AF%E5%A2%83_images/7700967a.png" /></p>
+<h2 id="cudnn"><code>cuDNN</code>安装</h2>
+<p>这个的安装就比较简单，就是下载解压即可。</p>
+<h2 id="conda"><code>conda</code>的安装</h2>
+<pre><code class="language-shell">wget conda链接
+
+export PATH=/root/anaconda3/bin/:$PATH
+
+source activate
+</code></pre>
 
 
 
