@@ -8133,18 +8133,188 @@ rosed geometry_msgs Pose.msg
 rosmsg show geometry_msgs/Pose
 </code></pre>
 <h2 id="_5">自定义消息类型</h2>
-<p>❇️创建在功能包文件夹中msg文件夹</p>
-<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/12132c93.png" /></p>
-<p>❇️进入msg文件夹，并创建RobotInfo.msg文件</p>
-<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/52b0bffc.png" /></p>
+<p>❇️创建在src文件夹中msg功能包</p>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/72f833bc.png" /></p>
+<pre><code class="language-shell">catkin_create_pkg my_msgs
+</code></pre>
+<p>❇️进入my_msgs文件夹，再创建msg文件夹，在msg文件夹中创建RobotInfo.msg文件</p>
 <p>❇️在RobotInfo.msg文件中输入以下自定义消息</p>
 <pre><code class="language-shell">Header header
 string state
 bool is_carry
 geometry_msgs/Pose pose
 </code></pre>
+<p>❇️修改功能包下的package.xml和CMakeLists.txt文件</p>
+<p>（1）在package.xml中添加</p>
+<pre><code class="language-shell">&lt;build_depend&gt;geometry_msgs&lt;/build_depend&gt;
+  &lt;build_depend&gt;roscpp&lt;/build_depend&gt;
+  &lt;build_depend&gt;rospy&lt;/build_depend&gt;
+  &lt;build_depend&gt;std_msgs&lt;/build_depend&gt;
+
+  &lt;build_export_depend&gt;geometry_msgs&lt;/build_export_depend&gt;
+  &lt;build_export_depend&gt;roscpp&lt;/build_export_depend&gt;
+  &lt;build_export_depend&gt;rospy&lt;/build_export_depend&gt;
+  &lt;build_export_depend&gt;std_msgs&lt;/build_export_depend&gt;
+
+  &lt;exec_depend&gt;geometry_msgs&lt;/exec_depend&gt;
+  &lt;exec_depend&gt;roscpp&lt;/exec_depend&gt;
+  &lt;exec_depend&gt;rospy&lt;/exec_depend&gt;
+  &lt;exec_depend&gt;std_msgs&lt;/exec_depend&gt;
+
+  &lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+  &lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</code></pre>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/9d47a9f3.png" /></p>
+<p>（2）在CMakeLists.txt中添加</p>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/0355bfe3.png" /></p>
+<pre><code class="language-shell">find_package(catkin REQUIRED COMPONENTS
+            roscpp
+            rospy
+            std_msgs
+            geometry_msgs
+            message_generation
+)
+</code></pre>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/2d0448af.png" /></p>
+<pre><code class="language-shell">add_message_files(
+          FILES
+          RobotInfo.msg
+)
+
+generate_messages(
+             DEPENDENCIES
+             geometry_msgs
+             std_msgs
+)
+
+catkin_package(CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs message_runtime)
+</code></pre>
+<p>❇️编译</p>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/db6a2363.png" /></p>
+<p>❇️查看</p>
+<pre><code class="language-shell">rosmsg show my_msgs/RobotInfo
+</code></pre>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/15a07a98.png" /></p>
 <h2 id="_6">消息的使用</h2>
+<p>在Python文件中</p>
+<pre><code class="language-python">from my_msgs.msg import RobotInfo
+msg = RobotInfo()
+</code></pre>
+<p>在C++文件中</p>
+<pre><code class="language-cpp">#include &lt;my_msgs/RobotInfo.h&gt;
+my_msgs::RobotInfo msg;
+</code></pre>
 <h1 id="_7">话题通信</h1>
+<p>❇️这里使用前面创建的功能包my_msgs，将其改为base_demo</p>
+<pre><code class="language-shell">mv my_msgs base_demo
+</code></pre>
+<p>更改package.xml和CMakeLists.txt文件下的信息</p>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/c7d86aee.png" /></p>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/eaca2315.png" /></p>
+<p>❇️编译一下</p>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/0b7daf80.png" /></p>
+<pre><code class="language-shell">catkin_make clean
+catkin_make
+</code></pre>
+<p>❇️试试查看消息</p>
+<pre><code class="language-shell">rosmsg show base_demo/RobotInfo
+</code></pre>
+<p>❇️在base_demo中创建scripts文件夹，用于存放Python脚本文件</p>
+<p>❇️创建话题发布节点文件，并输入一下内容</p>
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import rospy
+from base_demo.msg import RobotInfo
+
+def talker():
+    # 初始化节点
+    rospy.init_node('topic_pub', anonymous=False)
+    # 打印输出日志消息
+    rospy.loginfo('topic_pub node is Ready!')
+    # 创建发布RobotInfo消息到话题/robot_info的句柄(发布端)pub
+    pub = rospy.Publisher('/robot_info', RobotInfo, queue_size=10)
+    # 创建了RobotInfo消息的对象msg,并赋值
+    msg = RobotInfo()
+    msg.is_carry = False
+    msg.header.frame_id = 'map'
+    msg.pose.position.x = 0
+    msg.pose.position.y = 0
+    msg.pose.position.z = 0
+    msg.pose.orientation.w = 1
+    # 创建rate对象,设置频率为5Hz,用于循环发布
+    rate = rospy.Rate(5)
+    # 节点关闭前一直循环发布消息
+    while not rospy.is_shutdown():
+        # 设置state并改变msg中机器人在X方向上的位置
+        msg.state = 'Robot is moving...'
+        if msg.pose.position.x == 0:
+            go_flag = True
+        if msg.pose.position.x == 20:
+            go_flag = False
+        if go_flag:
+            msg.pose.position.x += 0.5
+        else:
+            msg.pose.position.x -= 0.5
+        # header的时间戳为当前时间
+        msg.header.stamp = rospy.Time.now()
+        # 打印输出机器人X方向的位置
+        rospy.loginfo('Robot pose x : %.1fm', msg.pose.position.x)
+        # 发布消息
+        pub.publish(msg)
+        # 按照循环频率延时
+        rate.sleep()
+
+if __name__ == '__main__':
+    talker()
+</code></pre>
+<p>❇️创建话题订阅节点文件，并输入一下内容</p>
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import rospy
+from base_demo.msg import RobotInfo
+# 接收到消息后,进入该回调函数
+def callback(data):
+    if data.pose.position.x == 20:
+        rospy.loginfo('The robot has reached the target pose.')
+        if data.is_carry:
+            rospy.loginfo('The robot is carrying objects')
+        else:
+            rospy.loginfo('The robot is not carrying objects')
+    else:
+         rospy.loginfo(data.state)
+         rospy.loginfo('Robot pose x : %.2fm; y : %.2fm; z : %.2fm', data.pose.position.x, data.pose.position.y, data.pose.position.z)
+
+def listener():
+    # 初始化节点
+    rospy.init_node('topic_sub', anonymous=True)
+    # 打印输出日志消息
+    rospy.loginfo('topic_sub node is Ready!')
+    # 创建/robot_info话题的订阅端,话题的回调处理函数为callback
+    rospy.Subscriber('/robot_info', RobotInfo, callback)
+    # 循环等待回调函数
+    rospy.spin()
+
+if __name__ == '__main__':
+    listener()
+</code></pre>
+<p>❇️CMakeLists.txt中添加节点</p>
+<pre><code class="language-shell">catkin_install_python(PROGRAMS
+  scripts/topic_pub.py scripts/topic_sub.py 
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+</code></pre>
+<p>❇️打开新的终端，运行发布节点</p>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/73b38df0.png" /></p>
+<pre><code class="language-shell">source devel/setup.bash
+
+rosrun base_demo topic_pub.py
+</code></pre>
+<p>❇️打开新的终端，运行订阅节点</p>
+<pre><code class="language-shell">source devel/setup.bash
+
+rosrun base_demo topic_sub.py
+</code></pre>
+<p><img alt="" src="../%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E4%BF%A1%E6%B5%8B%E8%AF%95_images/bd626f77.png" /></p>
 <h1 id="_8">服务通信</h1>
 
 
