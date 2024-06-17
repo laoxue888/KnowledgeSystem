@@ -8307,7 +8307,8 @@
 </li>
 <li><a href="#uboot_1">UBoot配置</a></li>
 <li><a href="#logo">开机logo替换</a></li>
-<li><a href="#uboot_2">Uboot下载</a></li>
+<li><a href="#uboot_2">Uboot 烧录</a></li>
+<li><a href="#_3">效果</a></li>
 </ul>
 </div>
 <h1 id="_1">开发环境配置</h1>
@@ -8384,6 +8385,8 @@ arm-linux-gnueabihf-gcc -v
 
 apt-get install device-tree-compiler
 </code></pre>
+<pre><code class="language-shell">apt-get install gcc make libncurses5-dev libncursesw5-dev python bc
+</code></pre>
 <h2 id="uboot">下载UBoot</h2>
 <pre><code class="language-shell">git clone https://github.com/Lichee-Pi/u-boot.git -b v3s-current
 #or git clone https://github.com/Lichee-Pi/u-boot.git -b v3s-spi-experimental
@@ -8396,7 +8399,18 @@ time make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- 2&gt;&amp;1 | tee build.lo
 </code></pre>
 <h1 id="uboot_1">UBoot配置</h1>
 <h1 id="logo">开机logo替换</h1>
-<h1 id="uboot_2">Uboot下载</h1>
+<h1 id="uboot_2">Uboot 烧录</h1>
+<ul>
+<li><a href="https://blog.csdn.net/oshan2012/article/details/113552039">lichee pi zero 荔枝派zero uboot编译 烧录</a></li>
+<li><a href="https://blog.csdn.net/qq_41839588/article/details/130038297">荔枝派Zero(全志V3S)烧录Uboot、Kernel及rootfs到SD卡并运行在板子上</a></li>
+</ul>
+<p><img alt="" src="../%E4%B8%BB%E7%BA%BFUBoot_images/84a817bc.png" /></p>
+<p>1、删除所有分区</p>
+<p>2、烧录</p>
+<pre><code class="language-shell">sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sdb bs=1024 seek=8
+</code></pre>
+<h1 id="_3">效果</h1>
+<p><img alt="" src="../%E4%B8%BB%E7%BA%BFUBoot_images/57874a43.png" /></p>
 
 
 
