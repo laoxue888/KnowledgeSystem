@@ -8208,6 +8208,7 @@
 <li><a href="#_1">前言</a></li>
 <li><a href="#_2">网络结构</a></li>
 <li><a href="#_3">运行环境搭建</a></li>
+<li><a href="#_4">报错</a></li>
 </ul>
 </div>
 <p><strong>Safdnet：一种简单有效的用于完全稀疏3D目标检测的网络</strong></p>
@@ -8223,20 +8224,36 @@
 </code></pre>
 <p>❇️Pycharm中连接</p>
 <p><img alt="" src="../SAFDNet%EF%BC%883D%EF%BC%89_images/c3cfb4ba.png" /></p>
+<p>❇️安装cuda toolkit 11.3 </p>
 <p>❇️创建虚拟环境</p>
-<pre><code class="language-shell">conda create -n HEDNet python=3.8
+<pre><code class="language-shell">conda create -n HEDNet1 python=3.9
 
-pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu121
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
 </code></pre>
 <p>❇️安装<code>spconv</code></p>
 <p><a href="https://github.com/traveller59/spconv">spconv</a></p>
-<pre><code class="language-shell">pip install spconv-cu120
+<pre><code class="language-shell">pip install spconv-cu113
 </code></pre>
 <p>❇️安装<code>pcdet</code></p>
 <pre><code class="language-shell">git clone https://github.com/open-mmlab/OpenPCDet.git
 
+cd OpenPCDet
+
+apt install gcc cmake
+
+# 先注释掉SharedArray，然后安装
+pip install -r requirements.txt
+</code></pre>
+<p><img alt="" src="../SAFDNet%EF%BC%883D%EF%BC%89_images/0b92d762.png" /></p>
+<pre><code class="language-shell">
+pip install SharedArray==3.1.0  
+
 python setup.py develop
 </code></pre>
+<h1 id="_4">报错</h1>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_48306625/article/details/131677605">ununtu18.04安装cuda时报错 由于没有公钥，无法验证下列签名： NO_PUBKEY A4B469963BF863CC</a></li>
+</ul>
 
 
 

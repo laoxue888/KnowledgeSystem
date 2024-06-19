@@ -8217,7 +8217,10 @@
 <li><a href="#_4">测试</a></li>
 <li><a href="#condapython">（进一步）配置conda的python编译器</a></li>
 <li><a href="#_5">安装显卡驱动</a><ul>
-<li><a href="#cuda-toolkit">CUDA Toolkit安装</a></li>
+<li><a href="#cuda-toolkit">CUDA Toolkit安装</a><ul>
+<li><a href="#_6">卸载</a></li>
+</ul>
+</li>
 <li><a href="#cudnn">cuDNN安装</a></li>
 <li><a href="#conda">conda的安装</a></li>
 </ul>
@@ -8344,15 +8347,24 @@ CMD [&quot;/bin/bash&quot;]
 <p>🤔参考：
 - <a href="https://zhuanlan.zhihu.com/p/686912520">Ubuntu CUDA toolkit安装</a></p>
 <p>❇️通过<code>nvidia-smi</code>查看主机的显卡驱动版本</p>
+<blockquote>
+<p>2024.6.18更新：不一定需要与上述显示的版本一致</p>
+</blockquote>
 <p>❇️选择与主机显卡相同版本的<code>CUDA Toolkit</code></p>
 <p><a href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA Toolkit Archive</a></p>
 <p><img alt="" src="../Pycharm-Docker%E6%9C%80%E4%BD%B3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%82%BC%E4%B8%B9%E7%8E%AF%E5%A2%83_images/bcbecd24.png" /></p>
 <p>❇️逐步选择，最后会有相应的安装脚本</p>
 <p><img alt="" src="../Pycharm-Docker%E6%9C%80%E4%BD%B3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%82%BC%E4%B8%B9%E7%8E%AF%E5%A2%83_images/179f728e.png" /></p>
+<p><strong>在线安装</strong></p>
 <pre><code class="language-shell">wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-5
+</code></pre>
+<p><strong>离线安装 【推荐】</strong></p>
+<p><img alt="" src="../Pycharm-Docker%E6%9C%80%E4%BD%B3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%82%BC%E4%B8%B9%E7%8E%AF%E5%A2%83_images/65837e35.png" /></p>
+<pre><code class="language-shell">wget https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/cuda_11.1.0_455.23.05_linux.run
+sudo sh cuda_11.1.0_455.23.05_linux.run
 </code></pre>
 <p>❇️设置环境变量，并添加到<code>~/.bashrc</code></p>
 <pre><code class="language-shell">export PATH=/usr/local/cuda-12.3/bin:$PATH
@@ -8362,6 +8374,11 @@ export LD_LIBRARY_PATH=/usr/local/cuda-12/lib64:$LD_LIBRARY_PATH
 <pre><code class="language-shell">nvcc -V
 </code></pre>
 <p><img alt="" src="../Pycharm-Docker%E6%9C%80%E4%BD%B3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%82%BC%E4%B8%B9%E7%8E%AF%E5%A2%83_images/7700967a.png" /></p>
+<h3 id="_6">卸载</h3>
+<pre><code class="language-shell">apt-get --purge -y remove 'cuda*'
+
+rm -rf /usr/local/cuda-xx.x
+</code></pre>
 <h2 id="cudnn"><code>cuDNN</code>安装</h2>
 <p>这个的安装就比较简单，就是下载解压即可。</p>
 <h2 id="conda"><code>conda</code>的安装</h2>
