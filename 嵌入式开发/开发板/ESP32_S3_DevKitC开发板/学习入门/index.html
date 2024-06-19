@@ -8208,18 +8208,23 @@
 <div class="toc">
 <ul>
 <li><a href="#_1">学习方法</a></li>
-<li><a href="#_2">参考文档</a></li>
+<li><a href="#_2">注意</a></li>
+<li><a href="#_3">参考文档</a></li>
 <li><a href="#esp32">安装ESP32驱动</a></li>
 <li><a href="#visual-studio-codeplatformio-esp32idf">安装Visual Studio Code以及PlatformIO ESP32IDF插件</a></li>
-<li><a href="#_3">测试代码</a></li>
-<li><a href="#_4">代码调试</a></li>
+<li><a href="#_4">测试代码</a></li>
+<li><a href="#_5">代码调试</a></li>
 </ul>
 </div>
 <p><strong>ESP32-S3-DevKitC开发板图片</strong></p>
 <p><img alt="" src="../images/img_5.png" /></p>
 <h1 id="_1">学习方法</h1>
 <p>首先从开发板入门、然后结合项目、官方案例学习提高。</p>
-<h1 id="_2">参考文档</h1>
+<h1 id="_2">注意</h1>
+<ul>
+<li>使用ESP32-S3自带的串口连接电脑时，要确保已经关闭VMWare之类的虚拟机，否则会反复报警告声，即连接上又断开反复。</li>
+</ul>
+<h1 id="_3">参考文档</h1>
 <p><a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/index.html">ESP32官方文档</a></p>
 <p><a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1704815270&amp;ver=5008&amp;signature=EeiKvIESF7302kLZB8O8BAeH4C*nUj9lBrU8LSLkuwBNPn5NwvfupkR1UennHTvVaEjSrUzzripyHgjh0iQ08AedKVTGdiRQD8ubQqjSaVei0Q6HwtbD0iq6T4jDcWw5&amp;new=1">老宇哥带你玩转ESP32，12篇基础教程已经更新完毕，接下来是进阶教程</a></p>
 <p><a href="https://blog.csdn.net/qq_41868901/article/details/104677389">《ESP32 学习笔记》 之Arduino环境下 使用 FreeRTOS 操作系统</a></p>
@@ -8242,7 +8247,7 @@
 <h1 id="visual-studio-codeplatformio-esp32idf">安装Visual Studio Code以及PlatformIO ESP32IDF插件</h1>
 <p><img alt="" src="../images/img.png" /></p>
 <p><img alt="" src="../images/img_1.png" /></p>
-<h1 id="_3">测试代码</h1>
+<h1 id="_4">测试代码</h1>
 <p><img alt="" src="../images/img_2.png" /></p>
 <pre><code class="language-c">#include &lt;Arduino.h&gt;
 
@@ -8259,7 +8264,7 @@ void loop() {
   delay(1000);                       // wait for a second
 }
 </code></pre>
-<h1 id="_4">代码调试</h1>
+<h1 id="_5">代码调试</h1>
 <blockquote>
 <p>参考：
 <a href="https://www.bilibili.com/video/BV1eM411d72C/?spm_id_from=333.337.search-card.all.click&amp;vd_source=3bf4271e80f39cfee030114782480463">ESP32自带JTAG: 最简Arduino断点单步调试指南</a></p>
