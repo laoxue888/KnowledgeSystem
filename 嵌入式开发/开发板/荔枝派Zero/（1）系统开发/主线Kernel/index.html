@@ -1089,6 +1089,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/%E8%8B%B1%E4%BC%9F%E8%BE%BE%E8%99%9A%E6%8B%9F%E4%BA%BA%E7%89%A9ACE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    英伟达虚拟人物ACE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
         
   
@@ -8466,8 +8487,12 @@
 <ul>
 <li><a href="#_1">安装依赖</a></li>
 <li><a href="#_2">安装交叉编译器</a></li>
-<li><a href="#linux">下载编译linux源码</a></li>
-<li><a href="#_3">烧录测试</a></li>
+<li><a href="#linux">编译Linux</a></li>
+<li><a href="#_3">编译根文件系统</a><ul>
+<li><a href="#toolchain">Toolchain 配置交叉工具链</a></li>
+</ul>
+</li>
+<li><a href="#_4">烧录测试</a></li>
 </ul>
 </div>
 <h1 id="_1">安装依赖</h1>
@@ -8488,11 +8513,12 @@ source /etc/bash.bashrc
 
 arm-linux-gnueabihf-gcc -v
 </code></pre>
-<h1 id="linux">下载编译linux源码</h1>
+<h1 id="linux">编译Linux</h1>
+<p><strong>下载编译linux源码</strong></p>
 <p>(默认是zero-5.2.y分支)：--depth 1 指拉取最近一次更改，不然会拉取所有更改（警告，数据量爆炸！）</p>
 <pre><code class="language-shell">git clone -b zero-5.2.y --depth 1 https://github.com/Lichee-Pi/linux.git
 </code></pre>
-<p>修改makefile文件</p>
+<p><strong>修改makefile文件</strong></p>
 <pre><code class="language-shell">cd linux
 vim Makefile
 [364]ARCH            = arm
@@ -8503,7 +8529,7 @@ vim Makefile
 <p>如果涉及到多个编译链版本，可以不用写入环境变量，在这里直接绝对路径指定。</p>
 <pre><code class="language-shell">[365]CROSS_COMPILE   = /opt/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 </code></pre>
-<p>然后开始编译</p>
+<p><strong>然后开始编译</strong></p>
 <pre><code class="language-shell">cd linux
 
 make licheepi_zero_defconfig
@@ -8513,9 +8539,9 @@ make  -j16 modules #编译模块
 make -j16 modules_install #安装模块
 make dtbs #编译设备树
 </code></pre>
-<p>编译完成后，zImage在arch/arm/boot/下，驱动模块在out/lib下，设备树在arch/arm/boot/dts下。</p>
+<p><strong>编译完成后</strong>，<strong>zImage</strong>在arch/arm/boot/下，<strong>驱动模块</strong>在out/lib下，<strong>设备树</strong>在arch/arm/boot/dts下。</p>
 <p>然后把zImage，sun8i-v3s-licheepi-zero-dock.dtb放到第一分区</p>
-<p>modules文件夹放入文件系统的lib下s</p>
+<p>modules文件夹放入<strong>文件系统</strong>的lib下s</p>
 <p>使用<code>modprobe xxx</code>加载模块。</p>
 <p>编译过程中可能遇到以下问题：</p>
 <blockquote>
@@ -8529,10 +8555,89 @@ make[1]: *** [scripts/Makefile.host:99: scripts/dtc/dtc] Error 1</code></p>
 vim scripts/dtc/dtc-lexer.l
 修改XXX yylloc 为 extern XXX yylloc
 </code></pre>
-<h1 id="_3">烧录测试</h1>
+<h1 id="_3">编译根文件系统</h1>
+<p>buildroot可用于构建小型的linux根文件系统。大小最小可低至2M，与内核一起可以放入最小8M的spi flash中。buildroot中可以方便地加入第三方软件包（其实已经内置了很多），省去了手工交叉编译的烦恼。美中不足的是不支持包管理系统，没有gcc等。</p>
+<p><strong>下载安装</strong></p>
+<p>首先安装一些依赖，比如linux头文件：</p>
+<pre><code class="language-shell">apt-get install linux-headers-$(uname -r)
+apt-get install libncurses5-dev
+apt-get install wget
+apt-get install gcc automake autoconf libtool make
+</code></pre>
+<p><strong>然后下载安装</strong></p>
+<pre><code class="language-shell">wget https://buildroot.org/downloads/buildroot-2017.08.tar.gz
+tar xvf buildroot-2017.08.tar.gz
+cd buildroot-2017.08/
+make menuconfig
+</code></pre>
+<p><strong>配置</strong></p>
+<p>看下ubootroot的目录结构</p>
+<pre><code class="language-shell">.
+├── arch: #存放CPU架构相关的配置脚本，如arm/mips/x86,这些CPU相关的配置，在制作工具链时，编译uboot和kernel时很关键.
+├── board
+├── boot
+├── CHANGES
+├── Config.in
+├── Config.in.legacy
+├── configs: #放置开发板的一些配置参数. 
+├── COPYING
+├── DEVELOPERS
+├── dl: #存放下载的源代码及应用软件的压缩包. 
+├── docs: #存放相关的参考文档. 
+├── fs: #放各种文件系统的源代码. 
+├── linux: #存放着Linux kernel的自动构建脚本. 
+├── Makefile
+├── Makefile.legacy
+├── output: #是编译出来的输出文件夹. 
+│   ├── build: #存放解压后的各种软件包编译完成后的现场.
+│   ├── host: #存放着制作好的编译工具链，如gcc、arm-linux-gcc等工具.
+│   ├── images: #存放着编译好的uboot.bin, zImage, rootfs等镜像文件，可烧写到板子里, 让linux系统跑起来.
+│   ├── staging
+│   └── target: #用来制作rootfs文件系统，里面放着Linux系统基本的目录结构，以及编译好的应用库和bin可执行文件. (buildroot根据用户配置把.ko .so .bin文件安装到对应的目录下去，根据用户的配置安装指定位置)
+├── package：#下面放着应用软件的配置文件，每个应用软件的配置文件有Config.in和soft_name.mk。
+├── README
+├── support
+├── system
+├── toolchain
+└── utils               # 实用工具
+</code></pre>
+<p><strong>CPU参数</strong></p>
+<pre><code class="language-shell">Target Architecture (ARM (little endian))  ---&gt;
+Target Binary Format (ELF)  ---&gt;
+Target Architecture Variant (cortex-A7)  ---&gt; 
+Target ABI (EABIhf)  ---&gt; 
+Floating point strategy (VFPv4-D16)  ---&gt; 
+ARM instruction set (ARM)  ---&gt;
+</code></pre>
+<p>其他配置</p>
+<h2 id="toolchain">Toolchain 配置交叉工具链</h2>
+<p>因为之前开发uboot和内核都用到了自己下载的工具链，所以这里也配置成外部工具链。没有的话先配置工具链</p>
+<pre><code class="language-shell"># 先试试
+arm-linux-gnueabihf-gcc -v
+</code></pre>
+<p>没有的话进行以下配置</p>
+<pre><code class="language-shell">wget https://releases.linaro.org/components/toolchain/binaries/6.3-2017.05/arm-linux-gnueabihf/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf.tar.xz
+tar xvf gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf.tar.xz
+mv gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf /opt/
+vim /etc/bash.bashrc
+# add: PATH=&quot;$PATH:/opt/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf/bin&quot;
+source /etc/bash.bashrc
+arm-linux-gnueabihf-gcc -v
+
+</code></pre>
+<p><strong>配置成外部工具链</strong></p>
+<pre><code class="language-shell">Toolchain type (External toolchain)  ---&gt;
+x   ( ) Buildroot toolchain
+x   (X) External toolchain
+</code></pre>
+<p><img alt="" src="../%E4%B8%BB%E7%BA%BFKernel_images/5eaa4bd4.png" /></p>
+<h1 id="_4">烧录测试</h1>
 <ul>
 <li><a href="https://blog.csdn.net/qq_41839588/article/details/130038297">荔枝派Zero(全志V3S)烧录Uboot、Kernel及rootfs到SD卡并运行在板子上</a></li>
+<li><a href="https://www.bilibili.com/video/BV1dx411L7FJ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=3bf4271e80f39cfee030114782480463">[哇酷网 whycan.cn]制作荔枝派Zero开发板(全志V3s) TF/SD卡启动盘</a></li>
+<li><a href="https://wiki.sipeed.com/soft/Lichee/zh/Nano-Doc-Backup/index.html">❤️荔枝派Nano 全流程指南</a></li>
 </ul>
+<p><img alt="" src="../%E4%B8%BB%E7%BA%BFKernel_images/ba083d02.png" /></p>
 
 
 
