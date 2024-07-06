@@ -8493,7 +8493,11 @@
 </ul>
 </li>
 <li><a href="#uboot">uboot传递参数</a></li>
-<li><a href="#_4">烧录测试</a></li>
+<li><a href="#_4">烧录测试</a><ul>
+<li><a href="#_5">烧录</a></li>
+<li><a href="#_6">测试</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="_1">安装依赖</h1>
@@ -8646,6 +8650,8 @@ mkimage -C none -A arm -T script -d boot.cmd boot.scr
 </code></pre>
 <p>最后将其放入第一分区，也就是Kernel分区，uboot会自动搜索该分区并找到这个文件。。</p>
 <h1 id="_4">烧录测试</h1>
+<h2 id="_5">烧录</h2>
+<p><img alt="" src="../%E4%B8%BB%E7%BA%BFKernel_images/ba083d02.png" /></p>
 <ul>
 <li><a href="https://blog.csdn.net/qq_41839588/article/details/130038297">荔枝派Zero(全志V3S)烧录Uboot、Kernel及rootfs到SD卡并运行在板子上</a></li>
 <li><a href="https://www.bilibili.com/video/BV1dx411L7FJ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=3bf4271e80f39cfee030114782480463">[哇酷网 whycan.cn]制作荔枝派Zero开发板(全志V3s) TF/SD卡启动盘</a></li>
@@ -8660,7 +8666,11 @@ ttyS0::respawn:/sbin/getty -L ttyS0 115200 vt100 # GE
 <pre><code class="language-shell">#console::respawn:/sbin/getty -L  console 0 vt100 # GENERIC_SERIAL
 ttyS0::respawn:/bin/sh
 </code></pre>
-<p><img alt="" src="../%E4%B8%BB%E7%BA%BFKernel_images/ba083d02.png" /></p>
+<h2 id="_6">测试</h2>
+<p><img alt="" src="../%E4%B8%BB%E7%BA%BFKernel_images/06668d1c.png" /></p>
+<pre><code class="language-shell">cat /dev/urandom &gt; /dev/fb0
+</code></pre>
+<p><img alt="" src="../%E4%B8%BB%E7%BA%BFKernel_images/06055d9e.png" /></p>
 
 
 
