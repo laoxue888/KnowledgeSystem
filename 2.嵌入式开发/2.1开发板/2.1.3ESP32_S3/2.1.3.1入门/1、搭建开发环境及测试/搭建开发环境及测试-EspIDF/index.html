@@ -6398,6 +6398,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../../4.%E4%BA%92%E8%81%94%E7%BD%91/MkDocs/VScode%E9%85%8D%E7%BD%AE%E4%B8%BA%E8%AF%A5%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VScode配置为该项目的编译环境
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../../4.%E4%BA%92%E8%81%94%E7%BD%91/MkDocs/mkdocs%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
         
   
@@ -9809,7 +9830,7 @@
 <p>LED灯以 500ms的频率交替闪烁。</p>
 <h1 id="_4">硬件原理</h1>
 <p><img alt="alt text" src="../images/image.png" /></p>
-<p><img alt="" src="../.%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/b2453d77.png" /></p>
+<p><img alt="" src="../%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/b2453d77.png" /></p>
 <h1 id="_5">程序设计</h1>
 <h2 id="_6">流程图</h2>
 <p><img alt="alt text" src="../images/image-1.png" /></p>
@@ -9992,13 +10013,13 @@ void app_main(void)
 <p>上述应用代码中，作者首先通过调用nvs_flash_init函数来初始化 NVS。若初始化时遇到没有足够空闲页面或检测到新版本的情况，代码会先擦除整个 NVS分区，并随后重新进行初始化。这种处理方式旨在确保 NVS在特定错误条件下能够被重置并重新使用。紧接着，代码调用led_init函数来初始化 LED。在随后的 while循环中，利用 LED_TOGGLE()宏定义来定期翻转LED的电平状态，每次翻转间隔为 500毫秒，从而实现了 LED的闪烁效果 。</p>
 <h1 id="_9">下载并运行程序以及效果如下</h1>
 <p>❇️选择芯片类型</p>
-<p><img alt="" src="../.%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/5ac20e2d.png" /></p>
+<p><img alt="" src="../%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/5ac20e2d.png" /></p>
 <p>❇️编译项目</p>
-<p><img alt="" src="../.%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/ec5cf9f0.png" /></p>
+<p><img alt="" src="../%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/ec5cf9f0.png" /></p>
 <p>❇️下载程序</p>
-<p><img alt="" src="../.%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/31620b32.png" /></p>
+<p><img alt="" src="../%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/31620b32.png" /></p>
 <p>❇️最终效果</p>
-<p><img alt="img.png" src="../.%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/img.png" /></p>
+<p><img alt="img.png" src="../%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%B5%8B%E8%AF%95-EspIDF_images/img.png" /></p>
 <h1 id="_10">调试</h1>
 <p><a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/api-guides/jtag-debugging/index.html#jtag-debugging-introduction">JTAG 调试</a></p>
 <p><a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/api-guides/jtag-debugging/index.html#jtag-debugging-configure-and-connect-jtag-interface">配置 ESP32-S3 内置 JTAG 接口</a></p>
